@@ -26,7 +26,7 @@ const FormSchema = z.object({
 });
  
 export type State = {
-  errors?: {
+  error?: {
     customerId?: string[];
     amount?: string[];
     status?: string[];
@@ -44,7 +44,7 @@ export async function createInvoice(prevState: State, formData: FormData){
     });
     if (!validatedFields.success){
       return {
-        errors: validatedFields.error.flatten().fieldErrors,
+        error: validatedFields.error.flatten().fieldErrors,
         message: 'Missing Fields. Failed to Create Invoice.',
       };
     }
